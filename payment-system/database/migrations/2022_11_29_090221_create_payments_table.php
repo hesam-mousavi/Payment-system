@@ -16,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreign(Order::class);
+            $table->foreignId(Order::class);
             $table->string('method');
             $table->string('gateway')->nullable();
             $table->string('ref_num')->nullable();

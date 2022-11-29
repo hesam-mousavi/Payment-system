@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,14 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId(User::class);
-            $table->string('code', 250)->unique();
-            $table->integer('amount');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->char('phone_number')->nullable();
+            $table->string('address')->nullable();
         });
-        // \DB::update('alter table orders AUTO_INCREMENT = 100000');
     }
 
     /**
@@ -31,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 };
