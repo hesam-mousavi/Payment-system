@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\BasketController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
+use App\Support\Storage\Contracts\StorageInterface;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +19,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/products', [ProductsController::class, 'index'])->name('products.index');
+Route::get('/basket/add/{product}', [BasketController::class, 'add'])->name('basket.add');
+Route::get('/basket/clear', function () {
+    resolve(StorageInterface::class)->clear();
+});
+Route::get('/basket', [BasketController::class, 'index'])->name('basket.index');
+Route::post('/basket/update/{product}', [BasketController::class, 'update'])->name('basket.update');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

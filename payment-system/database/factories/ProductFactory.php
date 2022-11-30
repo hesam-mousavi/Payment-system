@@ -30,7 +30,7 @@ class ProductFactory extends Factory
             ]),
 
             'description' => 'یک متن در باره توضیحات محصول که برای همه محصولات یکسان است.',
-            'image' => 'https://via.placeholder.com/150',
+            'image' => 'https://via.placeholder.com/100',
             'price' => 5000,
             'stock' => fake()->randomDigitNotNull,
 
